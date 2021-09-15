@@ -1,0 +1,318 @@
+/* 共通スタイル */
+
+$breakpoints: (
+ 'sm': 'screen and (max-width: 479px)',
+ 'md': 'screen and (max-width: 767px)',
+ 'lg': 'screen and (max-width: 979px)',
+) !default;
+
+@mixin mq($breakpoint: md) {
+    //map-get(マップ型変数, キー)で値を取得
+      @media #{map-get($breakpoints, $breakpoint)} {
+        //この中をカスタムできる
+        @content;
+      }
+    }
+
+
+$font-base-color: #082B48;
+$font-white-color: #fff;
+$section-padding: 80px 0;
+
+
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.5;
+    color: $font-base-color;
+
+    & p {
+        @include mq(sm) {
+            font-size: 14px;
+        }
+    }
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+a {
+    color: $font-base-color;
+
+    &:hover {
+        cursor: pointer;
+        opacity: .7;
+        text-decoration: none;
+        }
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+
+    @include mq(sm) {
+        font-size: 24px;
+    }
+}
+
+.clear {
+    clear: both;
+
+    &::after {
+        clear: both;
+        display: block;
+        content: "";
+        }
+}
+
+
+/* ==========================
+header
+============================*/
+header {
+    padding: 20px 0;
+
+    .nav {
+        padding: 0;
+
+        .header-brand {
+            font-size: 25px; 
+        }
+    }
+    
+    .navbar-light .navbar-nav .nav-link {
+        color: $font-base-color;
+    }
+
+    .nav-custom {
+        margin-left: 50px;
+    }
+
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding: 0;
+    }
+
+    #acList li{
+        display: none;
+        margin-left: 50px;
+    }
+}
+
+
+
+
+
+
+/* ==========================
+top
+============================*/
+.top {
+    background-image: url("../img/main-vsual-nontitle.png");
+    background-size: cover;
+    text-align: center;
+    padding: $section-padding;
+
+    .top-title {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .top-subtitle {
+        font-size: 18px;
+    }
+
+    .container, .container-md, .container-sm {
+        max-width: none;
+    }
+}
+
+
+
+/* ==========================
+about
+============================*/
+.about {
+    padding: $section-padding;
+
+    .about-image {
+        float: left;
+        width: 48%;
+        
+        @include mq(sm) {
+                float: none;
+                width: 100%;
+                margin-bottom: 30px;
+        }
+    }
+
+    .about-text {
+        width: 48%;
+        float: right;
+
+        @include mq(sm) {
+            float: none;
+            width: 100%;
+        }
+    }
+}
+
+
+
+
+/* ==========================
+course
+============================*/
+.course {
+    background-color: #e3fcf4;
+    padding: $section-padding;
+
+    .course-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .course-item {
+            width: 30%;
+            
+            @include mq(sm) {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .course-img {
+                width: 100%;
+                height: auto;
+            }
+            
+
+        }
+    }
+}
+
+
+
+/* ==========================
+contact
+============================*/
+.contact {
+    padding: $section-padding;
+
+    .contact-text {
+        margin-bottom: 20px;
+    }
+
+    .email {
+        display: block;
+        margin: 0 auto;
+        border: 3px solid #d8d8d8;
+        padding: 15px;
+        font-size: 18px;
+        border-radius: 999px;
+        width: 600px;
+        margin-bottom: 20px;
+
+        @include mq(sm) {
+            width: 100%;
+        }
+    }
+
+    .btn-standard {
+        display: block;
+        margin: 0 auto;
+        padding: 20px 60px;
+        font-size: 24px;
+        border-radius: 4px;
+
+        &:hover {
+            cursor: pointer;
+            opacity: .7 ;
+        }
+    }
+
+    .btn-start {
+        background-color: #ec6d64;
+        color: $font-white-color;
+    }
+}
+
+
+
+
+
+
+/* ==========================
+topへ戻る
+============================*/
+#pagetop {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    text-align: center;
+
+    .top-btn {
+        background-color: $font-base-color;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        line-height: 50px;
+        display: inline-block;
+        color: $font-white-color;
+        font-size: 14px;
+    }
+}
+
+
+
+
+/* ==========================
+footer
+============================*/
+footer {
+    background-color: $font-base-color;
+    padding: 20px 0;
+
+    .copyright {
+        color: $font-white-color;
+        text-align: right;
+        font-size: 12px;
+
+        @include mq(sm) {
+            text-align: center;
+            font-size: 10px;
+        }
+    }
+}
+
+
+/* ==========================
+モーダルウィンドウ
+============================*/
+.modal {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+}
+
+.modal-bg {
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+}
+
+.modal-content {
+    background: $font-white-color;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+}
